@@ -1,0 +1,10 @@
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\bin\x64\Debug\Munin Node For Windows.exe.config
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\bin\x64\Debug\Munin Node For Windows.exe
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\bin\x64\Debug\Munin Node For Windows.pdb
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin Node For Windows.csprojAssemblyReference.cache
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin_Node_For_Windows.Munin_Service.resources
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin_Node_For_Windows.ProjectInstaller.resources
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin Node For Windows.csproj.GenerateResource.cache
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin Node For Windows.csproj.CoreCompileInputs.cache
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin Node For Windows.exe
+C:\Users\loure\source\repos\munin-node-for-windows\Munin Node For Windows\obj\x64\Debug\Munin Node For Windows.pdb
