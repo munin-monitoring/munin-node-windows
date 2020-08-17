@@ -24,6 +24,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using Munin_Node_For_Windows.core;
 
 namespace Munin_Node_For_Windows
 {
@@ -44,25 +45,25 @@ namespace Munin_Node_For_Windows
                 foreach (string arg in args) {
                     argList += " '" + arg + "'";
                 }
-                Logger.LogText("Application run with Arguments -> " + argList, Logger.LogTypes.LOG_INFORMATION);
+                Logger.LogText("Application run with Arguments -> " + argList, Logger.LogTypes.LogInformation);
             }
 
             // runs the service only once, does not require installing
             if (args.Contains("-run"))
             {
                 string[] runArgs = {};
-                Munin_Service service = new Munin_Service();
+                MuninService service = new MuninService();
                 service.runOnce(runArgs);
                 return;
             }
 
 
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+            ServiceBase[] servicesToRun;
+            servicesToRun = new ServiceBase[]
             {
-                new Munin_Service()
+                new MuninService()
             };
-            ServiceBase.Run(ServicesToRun);
+            ServiceBase.Run(servicesToRun);
         }
     }
 }

@@ -30,18 +30,18 @@ namespace Munin_Node_For_Windows.src.required
 {
     class Logger
     {
-        private static string dir = "\\log\\";
-        private static string name = "munin";
+        private static string _dir = "\\log\\";
+        private static string _name = "munin";
 
         // Standard Log Categories, Although any string can be passed to the logText Method
         // It is strongly encouraged to use these standards
         public class LogTypes
         {
-            public const string LOG_INFORMATION = "Information";
-            public const string LOG_DEBUG = "Debug";
-            public const string LOG_TRACE = "Trace";
-            public const string LOG_WARNING = "Warning";
-            public const string LOG_ERROR = "Error";
+            public const string LogInformation = "Information";
+            public const string LogDebug = "Debug";
+            public const string LogTrace = "Trace";
+            public const string LogWarning = "Warning";
+            public const string LogError = "Error";
         }
 
         // Logs the text passed with the given Log Category
@@ -82,7 +82,7 @@ namespace Munin_Node_For_Windows.src.required
         // Returns the full path of the logging Directory
         private static string Dir()
         {
-            return BaseDir() + dir;
+            return BaseDir() + _dir;
         }
 
         // Returns the base directory of the app
@@ -95,13 +95,13 @@ namespace Munin_Node_For_Windows.src.required
         // Returns the path of the newest log file
         private static string Newest()
         {
-            return Dir() + name + ".newest.log";
+            return Dir() + _name + ".newest.log";
         }
 
         // Returns the path of the old log file defined by passed string
         private static string Old(string old)
         {
-            return Dir() + name + "." + old + ".log";
+            return Dir() + _name + "." + old + ".log";
         }
 
         // Get the StreamWriter for the current log file, this also creates/renames the necessary log files

@@ -102,6 +102,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="src\network\Munin_Socket.cs" />
     <Compile Include="src\required\Logger.cs" />
     <Compile Include="src\core\munin-service.cs">
       <SubType>Component</SubType>

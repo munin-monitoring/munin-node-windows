@@ -17,26 +17,23 @@
  * along with this program;
  */
 
-using Munin_Node_For_Windows.src.required;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+using Munin_Node_For_Windows.network;
+using Munin_Node_For_Windows.src.required;
 
-namespace Munin_Node_For_Windows
+namespace Munin_Node_For_Windows.core
 {
-    public partial class Munin_Service : ServiceBase
+    public partial class MuninService : ServiceBase
     {
+        private MuninSocket _socket;
+        
         // Initialization of the service
-        public Munin_Service()
+        public MuninService()
         {
             InitializeComponent();
+            // Create MuninSocket object with the default timeout
+            _socket = new MuninSocket(Properties.Settings.Default.DefaultTimeout);
         }
 
         // This runs the service only Once
@@ -49,7 +46,7 @@ namespace Munin_Node_For_Windows
         // Run when the service is commanded to start
         protected override void OnStart(string[] args)
         {
-            Logger.LogText("Service Started", Logger.LogTypes.LOG_INFORMATION);
+            Logger.LogText("Service Started", Logger.LogTypes.LogInformation);
         }
 
         // Run when the service is commanded to stop
@@ -61,13 +58,13 @@ namespace Munin_Node_For_Windows
     // Enums to describe Service Status
     public enum ServiceState
     {
-        SERVICE_STOPPED = 0x00000001,
-        SERVICE_START_PENDING = 0x00000002,
-        SERVICE_STOP_PENDING = 0x00000003,
-        SERVICE_RUNNING = 0x00000004,
-        SERVICE_CONTINUE_PENDING = 0x00000005,
-        SERVICE_PAUSE_PENDING = 0x00000006,
-        SERVICE_PAUSED = 0x00000007,
+        ServiceStopped = 0x00000001,
+        ServiceStartPending = 0x00000002,
+        ServiceStopPending = 0x00000003,
+        ServiceRunning = 0x00000004,
+        ServiceContinuePending = 0x00000005,
+        ServicePausePending = 0x00000006,
+        ServicePaused = 0x00000007,
     }
 
     [StructLayout(LayoutKind.Sequential)]

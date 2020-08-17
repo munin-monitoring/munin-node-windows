@@ -1,6 +1,6 @@
-﻿namespace Munin_Node_For_Windows
+﻿namespace Munin_Node_For_Windows.core
 {
-    partial class Munin_Service
+    partial class MuninService
     {
         /// <summary> 
         /// Required designer variable.
