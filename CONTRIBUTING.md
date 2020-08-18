@@ -1,18 +1,26 @@
-# Guide to Contributing.
+Contributing to Munin
 
-## Commits
+First off, thanks for taking the time to contribute!
 
-Make sure to use clear and understandable commit messages.
+Read on for more details in the Guide.
+Submitting Issues
 
-## Branches
+    Include the version of Munin you are using and the OS.
+    Include screenshots whenever possible; they are immensely helpful.
+    Include any relevant logs; the mere act of writing a detailed bug usually gives the answer.
 
-When you want to contribute, create a branch named: "dev-{name}-{number}" 
-where "name" is your github username and "number" is the count of the contributions you have made, 
-this is just to make sure we do not have duplicate branch names
+Pull Requests
 
-## Pull Requests
+    Include screenshots in your pull request if relevant.
+    End files with a newline.
 
-Give a clear description of what you have done and why you have done so.
-Pull requests will be denied if the above instructions are not followed.
-If you wish to be included in the README file, make sure to add your own information,
-we will NOT add your name for you.
+Git Commit Messages
+
+    Use the present tense ("Add feature" not "Added feature")
+    Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+    Use the standard commit formatting (look at the one already made)
+
+Coding style
+
+    Do your best to adopt the coding style already used in this repo
+
