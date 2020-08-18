@@ -17,6 +17,7 @@
  * along with this program;
  */
 
+using System;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using Munin_Node_For_Windows.required;
@@ -35,6 +36,7 @@ namespace Munin_Node_For_Windows.core
         // This runs the service only Once
         public bool runOnce(string[] args)
         {
+            Console.WriteLine("Running service only once in console window. Socket timeout will be reduced");
             OnStart(args);
             return true;
         }
