@@ -13,18 +13,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License Version 2
+ * You should have received a copy of the GNU General Public License v3.0
  * along with this program;
  */
 
-using Munin_Node_For_Windows.src.required;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 using Munin_Node_For_Windows.core;
+using Munin_Node_For_Windows.required;
 
 namespace Munin_Node_For_Windows
 {

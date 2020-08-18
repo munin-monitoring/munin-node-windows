@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License Version 2
+ * You should have received a copy of the GNU General Public License v3.0
  * along with this program;
  */
 
@@ -26,7 +26,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Munin_Node_For_Windows.src.required
+namespace Munin_Node_For_Windows.required
 {
     class Logger
     {

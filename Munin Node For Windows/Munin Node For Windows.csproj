@@ -96,13 +96,7 @@
     <Compile Include="src\core\ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="src\network\Munin_Socket.cs" />
     <Compile Include="src\required\Logger.cs" />
     <Compile Include="src\core\munin-service.cs">
       <SubType>Component</SubType>
@@ -115,10 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Properties\munin.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src\core\ProjectInstaller.resx">
@@ -127,6 +118,9 @@
     <EmbeddedResource Include="src\core\munin-service.resx">
       <DependentUpon>munin-service.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\network\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

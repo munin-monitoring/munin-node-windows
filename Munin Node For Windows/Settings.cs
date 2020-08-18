@@ -2,7 +2,7 @@
  * This file is modified with the Visual Studio Settings editor
  */
 
-namespace Munin_Node_For_Windows.Properties {
+namespace Munin_Node_For_Windows {
     
     
     // This class allows you to handle specific events on the settings class:

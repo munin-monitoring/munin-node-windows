@@ -13,27 +13,23 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License Version 2
+ * You should have received a copy of the GNU General Public License v3.0
  * along with this program;
  */
 
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
-using Munin_Node_For_Windows.network;
-using Munin_Node_For_Windows.src.required;
+using Munin_Node_For_Windows.required;
 
 namespace Munin_Node_For_Windows.core
 {
     public partial class MuninService : ServiceBase
     {
-        private MuninSocket _socket;
-        
+
         // Initialization of the service
         public MuninService()
         {
             InitializeComponent();
-            // Create MuninSocket object with the default timeout
-            _socket = new MuninSocket(Properties.Settings.Default.DefaultTimeout);
         }
 
         // This runs the service only Once
@@ -67,15 +63,16 @@ namespace Munin_Node_For_Windows.core
         ServicePaused = 0x00000007,
     }
 
+    // This can be changed from readonly if needed
     [StructLayout(LayoutKind.Sequential)]
-    public struct ServiceStatus
+    public readonly struct ServiceStatus
     {
-        public int dwServiceType;
-        public ServiceState dwCurrentState;
-        public int dwControlsAccepted;
-        public int dwWin32ExitCode;
-        public int dwServiceSpecificExitCode;
-        public int dwCheckPoint;
-        public int dwWaitHint;
+        private readonly int dwServiceType;
+        private readonly ServiceState dwCurrentState;
+        private readonly int dwControlsAccepted;
+        private readonly int dwWin32ExitCode;
+        private readonly int dwServiceSpecificExitCode;
+        private readonly int dwCheckPoint;
+        private readonly int dwWaitHint;
     };
 }
