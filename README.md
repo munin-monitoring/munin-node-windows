@@ -1,4 +1,4 @@
-**Still In Development** Releases will be made available when ready
+**Still In Development**, Releases will be made available when ready
 
 # Munin node for Windows: service
 ### Name in Project: *munin-node-windows-service*
