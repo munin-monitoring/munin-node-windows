@@ -1,6 +1,6 @@
-﻿namespace Munin_Node_For_Windows
+﻿namespace Munin_Node_For_Windows.core
 {
-    partial class ProjectInstaller
+    abstract partial class ProjectInstaller
     {
         /// <summary>
         /// Required designer variable.
@@ -43,15 +43,12 @@
             // 
             // ProjectInstaller
             // 
-            this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-            this.ProcessInstaller,
-            this.Installer});
-
+            this.Installers.AddRange(new System.Configuration.Install.Installer[] {this.ProcessInstaller, this.Installer});
         }
 
-        #endregion
-
-        private System.ServiceProcess.ServiceProcessInstaller ProcessInstaller;
         private System.ServiceProcess.ServiceInstaller Installer;
+        private System.ServiceProcess.ServiceProcessInstaller ProcessInstaller;
+
+        #endregion
     }
 }

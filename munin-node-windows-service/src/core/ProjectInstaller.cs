@@ -2,20 +2,15 @@
  * This file was auto-generated, add copyright information as soon as it is modified
  */
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Munin_Node_For_Windows
+namespace Munin_Node_For_Windows.core
 {
     [RunInstaller(true)]
-    public partial class ProjectInstaller : Installer
+    public abstract partial class ProjectInstaller : Installer
     {
-        public ProjectInstaller()
+        protected ProjectInstaller()
         {
             InitializeComponent();
         }

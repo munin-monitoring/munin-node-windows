@@ -26,9 +26,9 @@ namespace Munin_Node_For_Windows.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.0.0.0")]
-        public long bound_ip {
+        public string bound_ip {
             get {
-                return ((long)(this["bound_ip"]));
+                return ((string)(this["bound_ip"]));
             }
         }
         
@@ -38,6 +38,15 @@ namespace Munin_Node_For_Windows.Properties {
         public int bound_port {
             get {
                 return ((int)(this["bound_port"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300000")]
+        public int socket_timeout {
+            get {
+                return ((int)(this["socket_timeout"]));
             }
         }
     }
