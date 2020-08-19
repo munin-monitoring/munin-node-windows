@@ -20,31 +20,40 @@
 using System;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
+using Munin_Node_For_Windows.network;
 using Munin_Node_For_Windows.required;
 
 namespace Munin_Node_For_Windows.core
 {
     public partial class MuninService : ServiceBase
     {
-
+        private readonly MuninListener _muninListener;
+        
         // Initialization of the service
-        public MuninService()
+        public MuninService(bool runOnce)
         {
             InitializeComponent();
+            int timeout = Properties.Settings.Default.socket_timeout;
+            if (runOnce)
+            {
+                timeout = 100000;
+            }
+            Logger.GetLogger().LogText("Service initiated with timeout: " + timeout, LogTypes.LogInformation);
+            _muninListener = new MuninListener(timeout);
         }
 
         // This runs the service only Once
-        public bool runOnce(string[] args)
+        public void RunOnce(string[] args)
         {
-            Console.WriteLine("Running service only once in console window. Socket timeout will be reduced");
+            Console.WriteLine(@"Running service only once in console window. Socket timeout will be reduced");
             OnStart(args);
-            return true;
         }
 
         // Run when the service is commanded to start
         protected override void OnStart(string[] args)
         {
-            Logger.LogText("Service Started", Logger.LogTypes.LogInformation);
+            Logger.GetLogger().LogText("Service Started", LogTypes.LogInformation);
+            _muninListener.StartListeningForConnection();
         }
 
         // Run when the service is commanded to stop

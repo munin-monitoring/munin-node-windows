@@ -18,6 +18,7 @@
  */
 
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using Munin_Node_For_Windows.core;
 using Munin_Node_For_Windows.required;
@@ -33,6 +34,11 @@ namespace Munin_Node_For_Windows
         {
             // Initialize Log
             Logger.InitializeLog();
+            
+            if (args.Contains("-run"))
+            {
+                NativeMethods.AllocConsole();
+            }
 
             // Different run arguments
             if (args.Length > 0)
@@ -41,25 +47,36 @@ namespace Munin_Node_For_Windows
                 foreach (string arg in args) {
                     argList += " '" + arg + "'";
                 }
-                Logger.LogText("Application run with Arguments -> " + argList, Logger.LogTypes.LogInformation);
+                Logger.GetLogger().LogText("Application run with Arguments -> " + argList, LogTypes.LogInformation);
             }
 
             // runs the service only once, does not require installing
             if (args.Contains("-run"))
             {
                 string[] runArgs = {};
-                MuninService service = new MuninService();
-                service.runOnce(runArgs);
+                Logger.UseConsole = true;
+                MuninService service = new MuninService(true);
+                service.RunOnce(runArgs);
+                NativeMethods.FreeConsole();
                 return;
             }
 
 
-            ServiceBase[] servicesToRun;
-            servicesToRun = new ServiceBase[]
+            var servicesToRun = new ServiceBase[]
             {
-                new MuninService()
+                new MuninService(false)
             };
             ServiceBase.Run(servicesToRun);
         }
+    }
+
+    internal sealed class NativeMethods
+    {
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+        
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeConsole();
+        
     }
 }
