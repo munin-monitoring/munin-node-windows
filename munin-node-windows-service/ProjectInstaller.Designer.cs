@@ -1,6 +1,6 @@
-﻿namespace Munin_Node_For_Windows.core
+﻿namespace Munin_Node_For_Windows
 {
-    abstract partial class ProjectInstaller
+    partial class ProjectInstaller
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ProcessInstaller = new System.ServiceProcess.ServiceProcessInstaller();
-            this.Installer = new System.ServiceProcess.ServiceInstaller();
+            this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
+            this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
             // 
-            // ProcessInstaller
+            // serviceProcessInstaller1
             // 
-            this.ProcessInstaller.Password = null;
-            this.ProcessInstaller.Username = null;
-            this.ProcessInstaller.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.ProcessInstaller_AfterInstall);
+            this.serviceProcessInstaller1.Password = null;
+            this.serviceProcessInstaller1.Username = null;
             // 
-            // Installer
+            // serviceInstaller1
             // 
-            this.Installer.ServiceName = "Munin Node for Windows";
+            this.serviceInstaller1.ServiceName = "Munin Node for Windows";
             // 
             // ProjectInstaller
             // 
-            this.Installers.AddRange(new System.Configuration.Install.Installer[] {this.ProcessInstaller, this.Installer});
+            this.Installers.AddRange(new System.Configuration.Install.Installer[] {
+            this.serviceProcessInstaller1,
+            this.serviceInstaller1});
+
         }
 
-        private System.ServiceProcess.ServiceInstaller Installer;
-        private System.ServiceProcess.ServiceProcessInstaller ProcessInstaller;
-
         #endregion
+
+        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
+        private System.ServiceProcess.ServiceInstaller serviceInstaller1;
     }
 }
