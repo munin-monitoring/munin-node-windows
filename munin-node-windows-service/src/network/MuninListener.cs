@@ -123,5 +123,43 @@ namespace Munin_Node_For_Windows.network
             // Start the timer
             _timer.Start();
         }
+
+        // Destroy all necessary Objects
+        public void Destroy()
+        {
+            try
+            {
+                _timer.Dispose();
+                _timer.Close();
+            }
+            catch (Exception e)
+            {
+                Logger.GetLogger().LogText("Timer Cannot Be Destroyed, may already be dead", LogTypes.LogError);
+                throw;
+            }
+            try
+            {
+                _connectionListener.Stop();
+            }
+            catch (Exception e)
+            {
+                Logger.GetLogger().LogText("ConnectionListener cannot be Stopped, may already be dead", LogTypes.LogError);
+                throw;
+            }
+            try
+            {
+                if (_socket.Connected)
+                {
+                    _socket.Disconnect(false);                    
+                }
+                _socket.Close();
+                _socket.Dispose();
+            }
+            catch (Exception e)
+            {
+                Logger.GetLogger().LogText("Socket Cannot Be Destroyed, may already be dead", LogTypes.LogError);
+                throw;
+            }
+        }
     }
 }

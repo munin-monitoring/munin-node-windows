@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
+using System.Threading;
 using Munin_Node_For_Windows.network;
 using Munin_Node_For_Windows.required;
 
@@ -52,14 +53,34 @@ namespace Munin_Node_For_Windows.core
         // Run when the service is commanded to start
         protected override void OnStart(string[] args)
         {
+            // Update the service state to Start Pending.
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.dwCurrentState = ServiceState.ServiceStartPending;
+            serviceStatus.dwWaitHint = 100000;
+            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+
             Logger.GetLogger().LogText("Service Started", LogTypes.LogInformation);
-            _muninListener.StartListeningForConnection();
+            Thread thread = new Thread(_muninListener.StartListeningForConnection);
+            thread.Start();
+
+            // Update the service state to Running.
+            serviceStatus.dwCurrentState = ServiceState.ServiceRunning;
+            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
         }
 
         // Run when the service is commanded to stop
         protected override void OnStop()
         {
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.dwCurrentState = ServiceState.ServiceStopPending;
+            _muninListener.Destroy();
+            Logger.GetLogger().LogText("Service Stopped", LogTypes.LogInformation);
+            serviceStatus.dwCurrentState = ServiceState.ServiceStopped;
+            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
         }
+
+        [DllImport("advapi32.dll", SetLastError = true)]
+        private static extern bool SetServiceStatus(System.IntPtr handle, ref ServiceStatus serviceStatus);
     }
 
     // Enums to describe Service Status
@@ -76,14 +97,14 @@ namespace Munin_Node_For_Windows.core
 
     // This can be changed from readonly if needed
     [StructLayout(LayoutKind.Sequential)]
-    public readonly struct ServiceStatus
+    public struct ServiceStatus
     {
-        private readonly int dwServiceType;
-        private readonly ServiceState dwCurrentState;
-        private readonly int dwControlsAccepted;
-        private readonly int dwWin32ExitCode;
-        private readonly int dwServiceSpecificExitCode;
-        private readonly int dwCheckPoint;
-        private readonly int dwWaitHint;
+        public int dwServiceType;
+        public ServiceState dwCurrentState;
+        public int dwControlsAccepted;
+        public int dwWin32ExitCode;
+        public int dwServiceSpecificExitCode;
+        public int dwCheckPoint;
+        public int dwWaitHint;
     };
 }
